@@ -10,9 +10,5 @@ export default async function AuthButtonServer() {
     data: { session },
   } = await supabase.auth.getSession();
 
-  return (
-    <>
-      <AuthButtonClient session={session} />
-    </>
-  );
+  return <AuthButtonClient session={session} />;
 }

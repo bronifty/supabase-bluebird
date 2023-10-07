@@ -7,6 +7,7 @@ export async function GET(request: NextRequest) {
 
   if (code) {
     const supabase = createRouteHandlerClient({ cookies });
+    console.log("in app/auth/callback/route.ts setting the session cookie");
     await supabase.auth.exchangeCodeForSession(code);
   }
 
