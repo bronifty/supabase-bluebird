@@ -1,9 +1,14 @@
 "use client";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
+import { Session } from "@supabase/auth-helpers-nextjs";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-export default function AuthButtonClient({ session }: { session: any }) {
+export default function AuthButtonClient({
+  session,
+}: {
+  session: Session | null;
+}) {
   const supabase = createClientComponentClient();
   // const [session, setSession] = React.useState();
   // React.useEffect(() => {
