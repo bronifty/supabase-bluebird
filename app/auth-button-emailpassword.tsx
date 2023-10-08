@@ -60,8 +60,28 @@ export default function AuthButtonEmailPassword({
     }
     console.log(data);
   };
+
+  const verifyOTPEmailHash = async () => {
+    const token_hash =
+      "31240901bc2372b4c8d9c2c4d1ddde49d81ae51917e23ca2ca747b3e98dc36180cb99ff207d584cd8a0bb4924b43611b3af64daf0c1cc3fc";
+    console.log(`verify token_hash ${token_hash}`);
+
+    const { data, error } = await supabase.auth.verifyOtp({
+      token_hash,
+      type: "email",
+    });
+
+    if (error) {
+      console.log(error);
+      return;
+    }
+    console.log(data);
+  };
   const handleSignInWithOTPEmail = async () => {
-    signInWithEmailAndPassword();
+    signInWithOTPEmail();
+  };
+  const handleverifyOTPEmailHash = async () => {
+    verifyOTPEmailHash();
   };
 
   const handleSignOut = async () => {
@@ -77,6 +97,8 @@ export default function AuthButtonEmailPassword({
       <button onClick={handleSignIn}>Sign In With Email and password</button>
       <div></div>
       <button onClick={handleSignInWithOTPEmail}>Sign In With OTP Email</button>
+      <div></div>
+      <button onClick={handleverifyOTPEmailHash}>Verify OTP Email</button>
     </>
   );
 }
