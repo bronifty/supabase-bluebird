@@ -3,15 +3,20 @@ import AuthButtonClient from "@/app/auth-button-client";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
+import AuthButtonEmailPassword from "@/app/auth-button-emailpassword";
 // import React from "react";
 export default async function Login() {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = createServerComponentClient<Database>({ cookies });
   const {
     data: { session },
   } = await supabase.auth.getSession();
   if (session) {
     redirect("/");
   }
-  return <AuthButtonClient session={session} />;
-  // return <AuthButtonServer />;
+  return (
+    <>
+      <AuthButtonClient session={session} />;
+      <AuthButtonEmailPassword session={session} />
+    </>
+  );
 }

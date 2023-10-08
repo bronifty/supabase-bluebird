@@ -9,7 +9,7 @@ export default function AuthButtonClient({
 }: {
   session: Session | null;
 }) {
-  const supabase = createClientComponentClient();
+  const supabase = createClientComponentClient<Database>();
   // const [session, setSession] = React.useState();
   // React.useEffect(() => {
   //   async function getSession() {

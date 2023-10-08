@@ -4,7 +4,7 @@ import AuthButton from "./auth-button-client";
 import AuthButtonClient from "./auth-button-client";
 
 export default async function AuthButtonServer() {
-  const supabase = createServerComponentClient({ cookies });
+  const supabase = createServerComponentClient<Database>({ cookies });
 
   const {
     data: { session },
