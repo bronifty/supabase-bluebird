@@ -13,9 +13,25 @@ export default async function Home() {
   if (!session) {
     redirect("/login");
   }
-  const { data: tweets } = await supabase
+  const { data } = await supabase
     .from("tweets")
     .select("*, profiles(*), likes(*)");
+
+  const tweets =
+    data?.map((tweet) => ({
+      ...tweet,
+      user_has_liked_tweet: !!tweet.likes.find(
+        (like) => like.user_id === session.user.id
+      ),
+      likes: tweet.likes.length,
+    })) ?? [];
+  // const tweets = data?.map((tweet) => ({
+  //   ...tweet,
+  //   liked_by_user: tweet.user_id === session.user.id,
+  //   likes: tweet.likes.length,
+  // }));
+
+  console.log(`in Home data from tweets ${JSON.stringify(tweets, null, 2)}`);
 
   return (
     <>
