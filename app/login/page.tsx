@@ -3,7 +3,7 @@ import AuthButtonClient from "@/app/auth-button-client";
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import AuthButtonEmailPassword from "@/app/auth-button-emailpassword";
+
 // import React from "react";
 export default async function Login() {
   const supabase = createServerComponentClient<Database>({ cookies });
@@ -15,8 +15,7 @@ export default async function Login() {
   }
   return (
     <>
-      <AuthButtonClient session={session} />;
-      <AuthButtonEmailPassword session={session} />
+      <AuthButtonClient session={session} />
     </>
   );
 }

@@ -20,12 +20,15 @@ export default function AuthButtonClient({
   // }, []);
   const router = useRouter();
   const handleSignIn = async () => {
-    await supabase.auth.signInWithOAuth({
-      provider: "github",
-      options: {
-        redirectTo: "http://localhost:3000/auth/callback",
-      },
+    await supabase.auth.signInWithOtp({
+      email: "bronifty@gmail.com",
     });
+    // await supabase.auth.signInWithOAuth({
+    //   provider: "github",
+    //   options: {
+    //     redirectTo: "http://localhost:3000/auth/callback",
+    //   },
+    // });
   };
   const handleSignOut = async () => {
     await supabase.auth.signOut();
